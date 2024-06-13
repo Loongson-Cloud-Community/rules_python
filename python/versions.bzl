@@ -20,7 +20,7 @@ MACOS_NAME = "mac os"
 LINUX_NAME = "linux"
 WINDOWS_NAME = "windows"
 
-DEFAULT_RELEASE_BASE_URL = "https://github.com/indygreg/python-build-standalone/releases/download"
+DEFAULT_RELEASE_BASE_URL = "https://github.com/Loongson-Cloud-Community/python-build-standalone/releases/download"
 
 # When updating the versions and releases, run the following command to get
 # the hashes:
@@ -195,6 +195,7 @@ TOOL_VERSIONS = {
             "aarch64-unknown-linux-gnu": "1e0a3e8ce8e58901a259748c0ab640d2b8294713782d14229e882c6898b2fb36",
             "ppc64le-unknown-linux-gnu": "101c38b22fb2f5a0945156da4259c8e9efa0c08de9d7f59afa51e7ce6e22a1cc",
             "s390x-unknown-linux-gnu": "eee31e55ffbc1f460d7b17f05dd89e45a2636f374a6f8dc29ea13d0497f7f586",
+            "loongarch64-unknown-linux-gnu": "2a8661b876ce82b38edaffb768631cdcf26e642617b0d7dae0dbc9234514ffa9",
             "x86_64-apple-darwin": "82231cb77d4a5c8081a1a1d5b8ae440abe6993514eb77a926c826e9a69a94fb1",
             "x86_64-pc-windows-msvc": "02ea7bb64524886bd2b05d6b6be4401035e4ba4319146f274f0bcd992822cd75",
             "x86_64-unknown-linux-gnu": "f3ff38b1ccae7dcebd8bbf2e533c9a984fac881de0ffd1636fbb61842bd924de",
@@ -449,6 +450,17 @@ PLATFORMS = {
         # Matches the value returned from:
         # repository_ctx.execute(["uname", "-m"]).stdout.strip()
         arch = "s390x",
+    ),
+    "loongarch64-unknown-linux-gnu": struct(
+        compatible_with = [
+            "@platforms//os:linux",
+            "@platforms//cpu:loongarch64",
+        ],
+        os_name = LINUX_NAME,
+        # Note: this string differs between OSX and Linux
+        # Matches the value returned from:
+        # repository_ctx.execute(["uname", "-m"]).stdout.strip()
+        arch = "loongarch64",
     ),
     "x86_64-apple-darwin": struct(
         compatible_with = [
